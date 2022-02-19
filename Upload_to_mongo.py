@@ -24,6 +24,9 @@ def main(filepath: str, user: str, mongopass: str, cluster: str, collection_name
     check_list = grade_content.split(" ")
     passing_break_char = "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"
     print(check_list)
+    colors = ["\x1b[1;32m", "\x1b[0m", "\x1b[1;31m", "\x1b[1;35m", "\x1b[1;33m"]
+    for color in colors:
+        grade_content.replace(color, "")
     for index, item in enumerate(check_list):
         curr_character = check_list[index + 1]
         if item == "✔" or item == "✘":
