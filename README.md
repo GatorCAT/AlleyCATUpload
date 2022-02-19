@@ -4,3 +4,5 @@ A python based tool for uploading Gator Grader data from Github Actions to a Mon
 ## Requirements:
 * [Python](https://www.python.org/)
 * [Poetry](https://python-poetry.org/docs/#installing-with-pipx)
+
+## Usage:
