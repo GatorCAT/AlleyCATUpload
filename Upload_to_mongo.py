@@ -22,11 +22,10 @@ def main(filepath: str, user: str, mongopass: str, cluster: str, collection_name
     check = []
     begin_check = False
     check_list = grade_content.split(" ")
+    passing_break_char = "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"
+    print(check_list)
     for index, item in enumerate(check_list):
-        try:
-            curr_character = check_list[index + 1]
-        except:
-            raise
+        curr_character = check_list[index + 1]
         if item == "✔" or item == "✘":
             begin_check = True
         if begin_check:
@@ -35,7 +34,7 @@ def main(filepath: str, user: str, mongopass: str, cluster: str, collection_name
             all_checks.append(" ".join(check))
             check = []
             begin_check = False
-        elif "-~-" in curr_character or curr_character == "":
+        elif "-~-" in curr_character or curr_character == passing_break_char:
             all_checks.append(" ".join(check))
             break
     del all_checks[0]
