@@ -16,6 +16,7 @@ def main(filepath: str, user: str, mongopass: str, cluster: str, collection_name
         raise
     org, repo = get_org_and_repo(parse_input[0])    
     grade_content = parse_input[1]
+    print(grade_content)
     output_dict = {}
     output_dict["class"] = org
     output_dict["assignment"] = repo
