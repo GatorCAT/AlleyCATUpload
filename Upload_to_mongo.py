@@ -1,5 +1,4 @@
 from pymongo import MongoClient
-import re
 import typer
 
 cli = typer.Typer()
@@ -16,17 +15,10 @@ def main(filepath: str, user: str, mongopass: str, cluster: str, collection_name
         raise
     org, repo = get_org_and_repo(parse_input[0])    
     grade_content = parse_input[1]
-    print(grade_content)
     output_dict = {}
     output_dict["class"] = org
     output_dict["assignment"] = repo
     all_checks = []
-    # checks = None
-    # print(f"Checks before regex: {checks}")
-    # regexp = re.compile("[✔|✘][a-z0-9\s\.\\\/\-\(\)_'\[\]]+\s", flags=re.I)
-    # checks = re.findall(regexp, grade_content)    
-    # checks = [check.strip() for check in checks]
-    # print(f"Checks after regex: {checks}")
     check = []
     begin_check = False
     check_list = grade_content.split(" ")
@@ -48,6 +40,8 @@ def main(filepath: str, user: str, mongopass: str, cluster: str, collection_name
         elif "-~-" in next_character or "┏" in next_character:
             all_checks.append(" ".join(check))
             break
+    del all_checks[0]
+    print(all_checks)
     output_dict["checks"] = parse_check_values(all_checks)
     for item in output_dict:
         if item == "checks":
