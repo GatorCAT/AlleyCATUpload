@@ -23,7 +23,6 @@ def main(filepath: str, user: str, mongopass: str, cluster: str, collection_name
     begin_check = False
     check_list = grade_content.split(" ")
     for index, item in enumerate(check_list):
-        print(f"Index: {index}\tItem: {item}")
         try:
             curr_character = check_list[index + 1]
         except:
@@ -36,7 +35,7 @@ def main(filepath: str, user: str, mongopass: str, cluster: str, collection_name
             all_checks.append(" ".join(check))
             check = []
             begin_check = False
-        elif curr_character == "-~-" or curr_character == "":
+        elif "-~-" in curr_character or curr_character == "":
             all_checks.append(" ".join(check))
             break
     del all_checks[0]
