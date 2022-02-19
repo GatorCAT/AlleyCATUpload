@@ -35,7 +35,7 @@ def main(filepath: str, user: str, mongopass: str, cluster: str, collection_name
             all_checks.append(" ".join(check))
             check = []
             begin_check = False
-        elif "-~-" in curr_character or curr_character == "":
+        elif "-~-" in curr_character or "┏━" in curr_character:
             all_checks.append(" ".join(check))
             break
     del all_checks[0]
