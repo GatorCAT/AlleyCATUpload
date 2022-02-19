@@ -22,6 +22,7 @@ def main(filepath: str, user: str, mongopass: str, cluster: str, collection_name
     check = []
     begin_check = False
     check_list = grade_content.split(" ")
+    print(grade_content)
     for index, item in enumerate(check_list):
         try:
             curr_character = check_list[index + 1]
