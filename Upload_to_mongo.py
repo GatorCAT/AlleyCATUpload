@@ -23,6 +23,7 @@ def main(filepath: str, user: str, mongopass: str, cluster: str, collection_name
     begin_check = False
     check_list = grade_content.split(" ")
     for index, item in enumerate(check_list):
+        print(f"Index: {index}\tItem: {item}")
         try:
             curr_character = check_list[index + 1]
         except:
