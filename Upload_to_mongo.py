@@ -45,6 +45,7 @@ def main(filepath: str, user: str, mongopass: str, cluster: str, collection_name
     #         all_checks.append(" ".join(check))
     #         break
     output_dict["checks"] = parse_check_values(checks)
+    print(f"Checks: {checks}")
     for item in output_dict:
         if item == "checks":
             for object in output_dict[item]:
