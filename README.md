@@ -45,8 +45,25 @@ To utilize this tool within github actions insert these steps into your current 
     pip install typer
     pip install pymongo[srv]
     python --version
-    python3 Upload_to_mongo.py ../output.txt $Username $Password $Cluster_name $Collection_name
+    python3 GatorCATUpload/Upload_to_mongo.py ../output.txt $Username $Password $Cluster_name $Collection_name
 ```
+Or using Poetry in the action:
+```yml
+...
+# Run GatorCATUpload to send data to the desired MongoDB
+- name: Upload to MongoDB
+    if: always()
+    env:
+    Username: ${{secrets.MONGO_USERNAME}}
+    Password: ${{secrets.MONGO_PASSWORD}}
+    Cluster_name: ${{secrets.MONGO_CLUSTER_NAME}}
+    Collection_name: ${{secrets.MONGO_COLLECTION_NAME}}
+    run:  |
+    cd Mongo_Upload
+    poetry install
+    poetry run GatorCATUpload ../output.txt $Username $Password $Cluster_name $Collection_name
+```
+
 **NOTE:** This action requires the use of [Python](https://www.python.org/) in the action, and all the requirements for [Gator Gradle](https://github.com/GatorEducator/gatorgradle)
 
 As denoted by the variable names within the `env`, you will need to add Organization, or repository, *secrets* to securely use this code within a public repo.  Otherwise these values can be replaced with the required values.
