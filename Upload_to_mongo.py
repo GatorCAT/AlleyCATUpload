@@ -23,7 +23,7 @@ def main(filepath: str, user: str, mongopass: str, cluster: str, collection_name
     # all_checks = []
     checks = None
     print(f"Checks before regex: {checks}")
-    regexp = re.compile("[✔|✘][a-z0-9\s\.\\\/\-\(\)_'\"\[\]]+\s", flags=re.I)
+    regexp = re.compile("[✔|✘][a-z0-9\s\.\\\/\-\(\)_'\[\]]+\s", flags=re.I)
     checks = re.findall(regexp, grade_content)    
     checks = [check.strip() for check in checks]
     print(f"Checks after regex: {checks}")
