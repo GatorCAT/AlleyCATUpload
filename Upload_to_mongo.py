@@ -23,25 +23,22 @@ def main(filepath: str, user: str, mongopass: str, cluster: str, collection_name
     begin_check = False
     check_list = grade_content.split(" ")
     for index, item in enumerate(check_list):
-        #print(f"Index: {index}\tItem: {item}")
         try:
-            next_character = check_list[index + 1]
+            curr_character = check_list[index + 1]
         except:
             raise
         if item == "✔" or item == "✘":
             begin_check = True
         if begin_check:
             check.append(str(item))
-        if next_character == "✔" or next_character == "✘":
-            print(f"Check: {check}")
+        if curr_character == "✔" or curr_character == "✘":
             all_checks.append(" ".join(check))
             check = []
             begin_check = False
-        elif "-~-" in next_character or "┏" in next_character:
+        elif "-~-" in curr_character or "┏━" in curr_character:
             all_checks.append(" ".join(check))
             break
     del all_checks[0]
-    print(all_checks)
     output_dict["checks"] = parse_check_values(all_checks)
     for item in output_dict:
         if item == "checks":
