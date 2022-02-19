@@ -23,15 +23,19 @@ def main(filepath: str, user: str, mongopass: str, cluster: str, collection_name
     begin_check = False
     check_list = grade_content.split(" ")
     for index, item in enumerate(check_list):
+        try:
+            curr_character = check_list[index + 1]
+        except:
+            raise
         if item == "✔" or item == "✘":
             begin_check = True
         if begin_check:
             check.append(str(item))
-        if check_list[index + 1] == "✔" or check_list[index + 1] == "✘":
+        if curr_character == "✔" or curr_character == "✘":
             all_checks.append(" ".join(check))
             check = []
             begin_check = False
-        elif check_list[index + 1] == "-~-" or check_list[index + 1] == "":
+        elif curr_character == "-~-" or curr_character == "":
             all_checks.append(" ".join(check))
             break
     del all_checks[0]
