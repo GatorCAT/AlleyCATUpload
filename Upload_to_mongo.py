@@ -53,6 +53,7 @@ def get_org_and_repo(repository:str):
     if "-" in repo:
         repo = repo.split("-")
         del repo[-1]
+        repo = " ".join(repo)
     return org, repo
 
 def parse_check_values(check_list: list):
