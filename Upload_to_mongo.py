@@ -1,5 +1,5 @@
 from pymongo import MongoClient
-import regex as re
+import re
 import typer
 
 cli = typer.Typer()
