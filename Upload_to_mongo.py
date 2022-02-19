@@ -21,9 +21,12 @@ def main(filepath: str, user: str, mongopass: str, cluster: str, collection_name
     output_dict["class"] = org
     output_dict["assignment"] = repo
     # all_checks = []
+    checks = None
+    print(f"Checks before regex: {checks}")
     checks = re.findall(r"[✔|✘][a-z0-9\s\.\\\/\-\(\)_'\"\[\]]+\s", grade_content, flags=re.I)
-
+    
     checks = [check.strip() for check in checks]
+    print(f"Checks after regex: {checks}")
     # check = []
     # begin_check = False
     # check_list = grade_content.split(" ")
