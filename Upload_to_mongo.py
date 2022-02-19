@@ -20,36 +20,35 @@ def main(filepath: str, user: str, mongopass: str, cluster: str, collection_name
     output_dict = {}
     output_dict["class"] = org
     output_dict["assignment"] = repo
-    # all_checks = []
-    checks = None
-    print(f"Checks before regex: {checks}")
-    regexp = re.compile("[✔|✘][a-z0-9\s\.\\\/\-\(\)_'\[\]]+\s", flags=re.I)
-    checks = re.findall(regexp, grade_content)    
-    checks = [check.strip() for check in checks]
-    print(f"Checks after regex: {checks}")
-    # check = []
-    # begin_check = False
-    # check_list = grade_content.split(" ")
-    # for index, item in enumerate(check_list):
-    #     #print(f"Index: {index}\tItem: {item}")
-    #     try:
-    #         next_character = check_list[index + 1]
-    #     except:
-    #         raise
-    #     if item == "✔" or item == "✘":
-    #         begin_check = True
-    #     if begin_check:
-    #         check.append(str(item))
-    #     if next_character == "✔" or next_character == "✘":
-    #         print(f"Check: {check}")
-    #         all_checks.append(" ".join(check))
-    #         check = []
-    #         begin_check = False
-    #     elif "-~-" in next_character or "┏" in next_character:
-    #         all_checks.append(" ".join(check))
-    #         break
-    output_dict["checks"] = parse_check_values(checks)
-    print(f"Checks: {checks}")
+    all_checks = []
+    # checks = None
+    # print(f"Checks before regex: {checks}")
+    # regexp = re.compile("[✔|✘][a-z0-9\s\.\\\/\-\(\)_'\[\]]+\s", flags=re.I)
+    # checks = re.findall(regexp, grade_content)    
+    # checks = [check.strip() for check in checks]
+    # print(f"Checks after regex: {checks}")
+    check = []
+    begin_check = False
+    check_list = grade_content.split(" ")
+    for index, item in enumerate(check_list):
+        #print(f"Index: {index}\tItem: {item}")
+        try:
+            next_character = check_list[index + 1]
+        except:
+            raise
+        if item == "✔" or item == "✘":
+            begin_check = True
+        if begin_check:
+            check.append(str(item))
+        if next_character == "✔" or next_character == "✘":
+            print(f"Check: {check}")
+            all_checks.append(" ".join(check))
+            check = []
+            begin_check = False
+        elif "-~-" in next_character or "┏" in next_character:
+            all_checks.append(" ".join(check))
+            break
+    output_dict["checks"] = parse_check_values(all_checks)
     for item in output_dict:
         if item == "checks":
             for object in output_dict[item]:
