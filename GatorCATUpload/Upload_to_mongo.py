@@ -1,3 +1,4 @@
+from datetime import datetime
 from pymongo import MongoClient
 import typer
 
@@ -42,6 +43,8 @@ def main(filepath: str, user: str, mongopass: str, cluster: str, collection_name
             break
     del all_checks[0]
     output_dict["checks"] = parse_check_values(all_checks)
+    date = datetime.utcnow()
+    output_dict["date uploaded"] = date.strftime("%Y-%m-%d")
     for item in output_dict:
         if item == "checks":
             for object in output_dict[item]:
