@@ -3,7 +3,7 @@ A python based tool for uploading Gator Grader data from Github Actions to a Mon
 
 ## Requirements:
 * [Python](https://www.python.org/)
-* [Poetry](https://python-poetry.org/docs/#installing-with-pipx)
+* [Poetry](https://python-poetry.org/docs/#installing-with-pipx) (Currently not functional)
 
 ## Usage:
 
@@ -65,6 +65,7 @@ Or using Poetry in the action:
 ```
 
 **NOTE:** This action requires the use of [Python](https://www.python.org/) in the action, and all the requirements for [Gator Gradle](https://github.com/GatorEducator/gatorgradle)
+**NOTE:** Currently does not work as intended.  For the time being use the python implementation within your Github Action
 
 As denoted by the variable names within the `env`, you will need to add Organization, or repository, *secrets* to securely use this code within a public repo.  Otherwise these values can be replaced with the required values.
 
