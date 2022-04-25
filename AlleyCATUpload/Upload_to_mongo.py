@@ -4,6 +4,7 @@ import typer
 
 cli = typer.Typer()
 
+
 @cli.command()
 def main(filepath: str, user: str, mongopass: str, cluster: str, collection_name: str):
     parse_input = []
@@ -14,7 +15,7 @@ def main(filepath: str, user: str, mongopass: str, cluster: str, collection_name
     except FileNotFoundError:
         print("File not found")
         raise
-    org, repo = get_org_and_repo(parse_input[0])    
+    org, repo = get_org_and_repo(parse_input[0])
     grade_content = parse_input[1]
     output_dict = {}
     output_dict["class"] = org
@@ -53,7 +54,8 @@ def main(filepath: str, user: str, mongopass: str, cluster: str, collection_name
             print(f"{item}: {output_dict[item]}")
     upload_to_mongo(output_dict, user, mongopass, cluster, collection_name)
 
-def get_org_and_repo(repository:str):
+
+def get_org_and_repo(repository: str):
     org, repo = repository.split("/")
     if "-" in repo:
         repo = repo.split("-")
@@ -61,11 +63,12 @@ def get_org_and_repo(repository:str):
         repo = " ".join(repo)
     return org, repo
 
+
 def parse_check_values(check_list: list):
     output = {}
     for item in check_list:
         name = ""
-        if item[0] ==  "✔":
+        if item[0] == "✔":
             name = item[2:]
             output[name] = True
         else:
@@ -73,15 +76,20 @@ def parse_check_values(check_list: list):
             output[name] = False
     return output
 
-def upload_to_mongo(info: str, user: str, password: str, cluster_name: str, database: str):
+
+def upload_to_mongo(
+    info: str, user: str, password: str, cluster_name: str, database: str
+):
     try:
-        client = MongoClient(f"mongodb+srv://{user}:{password}@{cluster_name}.u4cyq.mongodb.net/{database}?retryWrites=true&w=majority")
+        client = MongoClient(
+            f"mongodb+srv://{user}:{password}@{cluster_name}.u4cyq.mongodb.net/{database}?retryWrites=true&w=majority"
+        )
         db = client.test
         db = client.get_database(database)
     except:
         raise
     db.StudentData.insert_one(info)
+
+
 if __name__ == "__main__":
     cli()
-
-    
