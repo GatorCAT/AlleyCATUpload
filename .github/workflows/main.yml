@@ -1,5 +1,5 @@
 # Basic workflow
-name: build
+name: main
 
 # Controls when the action will run
 # Workflow begins with push or PR events
