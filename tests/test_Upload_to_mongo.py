@@ -1,5 +1,6 @@
 import pytest
-from alleycatupload import Upload_to_mongo
+from AlleyCATUpload.Upload_to_mongo import get_org_and_repo
+from AlleyCATUpload.Upload_to_mongo import parse_check_values
 
 @pytest.mark.parametrize(
         "test_input,expected_org,expected_repo",
@@ -10,7 +11,7 @@ from alleycatupload import Upload_to_mongo
         ]
         )
 def test_get_org_and_repo_with_student(test_input, expected_org,expected_repo):
-    org, repo = Upload_to_mongo.get_org_and_repo(test_input)
+    org, repo = get_org_and_repo(test_input)
     assert org == expected_org
     assert repo == expected_repo
 
@@ -23,7 +24,7 @@ def test_get_org_and_repo_with_student(test_input, expected_org,expected_repo):
         ]
         )
 def test_get_org_and_repo_without_student(test_input, expected_org,expected_repo):
-    org, repo = Upload_to_mongo.get_org_and_repo(test_input)
+    org, repo = get_org_and_repo(test_input)
     assert org == expected_org
     assert repo == expected_repo
 
@@ -75,5 +76,5 @@ def test_get_org_and_repo_without_student(test_input, expected_org,expected_repo
     ]
 )
 def test_parse_check_values(test_input,expected):
-    checks = Upload_to_mongo.parse_check_values(test_input)
+    checks = parse_check_values(test_input)
     assert checks == expected
